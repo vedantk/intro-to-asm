@@ -21,15 +21,17 @@ $ clang -o part1 part1.c
 
 Run it with some test inputs, like this:
 
-  $ ./part1
-  $ echo $?
-  0
-  $ ./part1 1
-  $ echo $?
-  1
-  $ ./part1 1 2 3
-  $ echo $?
-  6
+```
+$ ./part1
+$ echo $?
+0
+$ ./part1 1
+$ echo $?
+1
+$ ./part1 1 2 3
+$ echo $?
+6
+```
 
 Now, use the compiler to show you the assembly for the program:
 
