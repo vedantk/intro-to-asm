@@ -20,10 +20,12 @@ _main:
 	# This is the function prologue.
 
 	# Push the frame pointer to the stack.
+	# The frame pointer is used to find frame-local variables.
 	# The 'q' suffix to 'push' means '64-bit' (or quadword). These are 64-bit registers.
 	pushq	%rbp
 
 	# Set the frame pointer equal to the stack pointer.
+	# Subtracting from the stack pointer extends the size of a frame.
 	movq	%rsp, %rbp
 
 	# Push a bunch of registers to the stack to preserve them for the caller.
@@ -54,10 +56,10 @@ _main:
 LBB0_2:
 	movq	(%rbx), %rdi  # Load from "argv[i]" and store the pointer into %rdi.
 	callq	_atoi         # Call _atoi to convert the string pointed-to by %rdi to an integer.
-	addl	%eax, %r14d   # _atoi returns an integer in %ear. Add it to the sum in %r14d.
+	addl	%eax, %r14d   # _atoi returns an integer in %eax. Add it to the sum in %r14d.
 	addq	$8, %rbx      # Advance the "argv" pointer.
 	decq	%r15          # Decrement "argc".
-	jne	LBB0_2        # Jump to the start of the loop if we're not "argc" isn't 0.
+	jne	LBB0_2        # Jump to the start of the loop if "argc" isn't 0.
 LBB0_3:
 	movl	%r14d, %eax   # Move the sum to %eax.
 
