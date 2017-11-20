@@ -3,8 +3,10 @@
 (WIP)
 
 This project is designed to teach the basics of reading and writing x86_64
-assembly. This is a fundamental skill which is used to figure out what programs
-actually do. This comes in handy when debugging or analyzing security issues.
+assembly. This is a fundamental skill which can be used to figure out what
+programs do, at a pretty low level.
+
+This comes in handy when debugging or analyzing security issues.
 
 Prerequisites: Some CS background and familiarity with C. The examples may be
 specific to macOS+x86_64/clang, but they should carry over to other platforms.
@@ -23,7 +25,7 @@ Run it with some test inputs, like this:
 
 ```
 $ ./part1
-$ echo $?
+$ echo $?     # The sum is in the return code.
 0
 $ ./part1 1
 $ echo $?
@@ -38,18 +40,18 @@ Now, use the compiler to show you the assembly for the program:
 $ clang -O1 -fno-unwind-tables -S -o part1.s part1.c
 
 The "-S" compiler flag means "emit human-readable assembly" (as opposed to an
-object file). Typically the ".s" file extension is used for assembly.
+object file). Typically the ".s" file extension is used for assembly files.
 
-Don't worry about what "-O1" or "-fno-unwind-tables" means. Briefly, these are
+Don't worry about what "-O1" or "-fno-unwind-tables" mean. Briefly, these are
 compiler flags which control the optimization level and disable stack unwinding
-support. We're only using them to make the assembly easier to read.
+support. We're using them to make the assembly easier to read.
 
 Now, open up part1.s and skim through it:
 
 $ cat part1.s
 
 This is x86_64 assembly code. There is an annotated version of this file in
-this repo in part1/part1.s.
+part1/part1.s.
 
 The compiler is happy to assemble and link this code, turning it into an
 executable. Try this:
@@ -57,7 +59,7 @@ executable. Try this:
 $ clang -o part1-from-asm part1.s
 
 The "part1-from-asm" binary should work exactly the same as the "part1" binary.
-Make sure that it does!
+Make sure that it does by running it on some test inputs!
 
 ### Exercises
 
